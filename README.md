@@ -1,8 +1,10 @@
 # CNorm
 Custom copy number tumor cohort normalization for isolating effects of individual CNAs
 #
-First, call ChrArm_CNA_freq_TCGA_puritycorrection.r function to generate purity-corrected copy number calls and CNA summaries
+First, call the ChrArm_CNA_freq_TCGA_puritycorrection.r function to generate purity-corrected copy number calls and CNA summaries.
+#
 Then use the output to call Arm_Level_CNorm_diffexp.r function to analyze differential expression associated with a CNA.
+#
 This function will perform a cohort subsampling to normalize for co-occuring CNAs when possible. 
 To simply generate differential expression data without cohort subsampling and CNA normalization, just set cohort_subsample_minFrac = 0.
 #
