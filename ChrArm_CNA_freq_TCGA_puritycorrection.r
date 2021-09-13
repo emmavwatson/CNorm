@@ -1,7 +1,7 @@
 #requires(tidyverse)
 #requires(data.table)
 #
-#uses a chromosome information file such as the file chromdata.txt included in this package (i.e. "chromdata")
+#uses a chromosome information file such as the file chromdata_hg19.txt included in this package
 #
 #uses segment CNA files from TCGA database, purity files downloaded from https://zenodo.org/record/253193#.YT-EfDZKi-w 
 #
@@ -10,7 +10,9 @@
 #
 #also prints out files with lists of samples called for each potential arm-level CNA
 #
-#adjustable parameters: y = name on printed text files, z = minimal fraction of chromosome arm included in CNA, w = maximal Segment_Mean value to call losses, g = minimal Segment_Mean value to call gains
+#adjustable parameters: y = name on printed text files, z = minimal fraction of chromosome arm included in CNA, w = maximal Segment_Mean value to call loss, g = minimal Segment_Mean value to call gain
+#vignette: 
+#BRCA_CNA_summary <- ChrArm_CNA_freq_TCGA_puritycorrection(BRCA_CNA, BRCA_purity, "BRCA_CNAs_0.75", 0.75, -0.585, 0.415, chromdata_hg19)
 
 ChrArm_CNA_freq_TCGA_puritycorrection <- function(TCGA_CNA, TCGA_purity, y, z, w, g, chromdata) { 
     #prep files
