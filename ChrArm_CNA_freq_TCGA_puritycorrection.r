@@ -1,3 +1,17 @@
+#requires(tidyverse)
+#requires(data.table)
+#
+#uses a chromosome information file such as the file chromdata.txt included in this package (i.e. "chromdata")
+#
+#uses segment CNA files from TCGA database, purity files downloaded from https://zenodo.org/record/253193#.YT-EfDZKi-w 
+#
+#generates list of four dataframes called final_output: final_output[[1]] is the Deletion Tumor Sample summary, final_output[[2]] is the Deletion Frequency summary, 
+#final_output[[3]] is the Amplification Tumor Sample summary, and final_output[[4]] is the Amplification Frequency summary
+#
+#also prints out files with lists of samples called for each potential arm-level CNA
+#
+#adjustable parameters: y = name on printed text files, z = minimal fraction of chromosome arm included in CNA, w = maximal Segment_Mean value to call losses, g = minimal Segment_Mean value to call gains
+
 ChrArm_CNA_freq_TCGA_puritycorrection <- function(TCGA_CNA, TCGA_purity, y, z, w, g, chromdata) { 
     #prep files
     print("... preparing data...")
