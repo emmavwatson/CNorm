@@ -100,13 +100,13 @@ Arm_Level_CNorm_diffexp <- function(TCGA_RSEM, TCGA_purity, TCGA_CNA, ChrArm_CNA
     ChrArm_summary$ChrArm2 <- paste(ChrArm_summary$ChrArm, ChrArm_summary$status, sep="_")
     ChrArm_summary <- subset(ChrArm_summary, id %in% TCGA_RSEM_ids$id)
     ChrArmY <- paste(arm, gain_loss, sep="_")
+    ChrArm_summary2 <- ChrArm_summary
     ids_to_grab1 <- subset(ChrArm_summary2, ChrArm == arm & status == gain_loss)$id
     ChrArm_summary_subset1 <- subset(ChrArm_summary2, id %in% ids_to_grab1)
     ChrArm_summary_subset_ELSE1 <- subset(ChrArm_summary2, id %ni% ids_to_grab1)
     min3subset <- round(length(unique(ChrArm_summary_subset1$id))*cohort_subsample_minFrac)
     min3ELSE <- round(length(unique(ChrArm_summary_subset_ELSE1$id))*cohort_subsample_minFrac)
     print("success")
-        ChrArm_summary2 <- ChrArm_summary
         ChrArm_list <- unique(ChrArm_summary$ChrArm2)
         #my.list2 <- list()
     print("... performing CNorm to generate custom cohort ...")
@@ -142,6 +142,7 @@ Arm_Level_CNorm_diffexp <- function(TCGA_RSEM, TCGA_purity, TCGA_CNA, ChrArm_CNA
             CNA_distributions_ChrArm$no_to_remove <- round(CNA_distributions_ChrArm$no_to_remove)
             CNA_distributions_ChrArm2 <- subset(CNA_distributions_ChrArm, abs(diff) > acceptable_difference_percent)
             CNA_distributions_ChrArm2 <- subset(CNA_distributions_ChrArm2, yes_count != 0 & no_count !=0)
+            
             if (cohort_subsample_minFrac == 1)
                 break
             if (nrow(CNA_distributions_ChrArm2) == 0)
